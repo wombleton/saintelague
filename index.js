@@ -14,6 +14,8 @@ module.exports = function(parties, options) {
   }, 0);
 
   _.each(parties, function(party) {
+    party.electorates = party.electorates || 0;
+    party.votes = party.votes || 0;
     party.allocated = 0;
     if (party.electorates > 0 || (party.votes / totalVotes) > 0.05) {
       party.quotient = party.votes;
