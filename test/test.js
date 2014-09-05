@@ -67,3 +67,22 @@ module.exports['2005 NZ election'] = function(test) {
 
   test.done();
 };
+
+module.exports['handles undefined votes'] = function(test) {
+  var parties,
+    result;
+
+  parties = [
+    { name: 'A', votes: 1, electorates: 1 },
+    { name: 'B', votes: undefined, electorates: undefined }
+  ];
+
+  result = lague(parties, { seats: 120 });
+
+  test.equals(result[0].allocated, 120);
+  test.equals(result[1].allocated, 0);
+
+  test.equals(result[0].lists, 119);
+  test.equals(result[1].lists, 0);
+  test.done();
+};
