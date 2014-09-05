@@ -1,6 +1,6 @@
 {
   "name": "saintelague",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Calculates Sainte-Lague for an election result.",
   "main": "index.js",
   "dependencies": {
