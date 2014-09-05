@@ -1,13 +1,14 @@
 {
   "name": "saintelague",
-  "version": "0.0.1",
-  "description": "Calculates Sainte-Lague for an election result.",
+  "version": "0.0.2",
+  "description": "Calculates Sainte-Laguë for an election result.",
   "main": "index.js",
   "dependencies": {
-    "lodash": "~2.4.1",
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
     "nodeunit": "~0.9.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "nodeunit test"
   },
