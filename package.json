@@ -1,0 +1,31 @@
+{
+  "name": "saintelague",
+  "version": "0.0.0",
+  "description": "Calculates Sainte-Lague for an election result.",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "~2.4.1",
+    "nodeunit": "~0.9.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodeunit test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wombleton/saintelague"
+  },
+  "keywords": [
+    "sainte-lague",
+    "sainte-laguë",
+    "mmp",
+    "voting",
+    "mixed member proportional",
+    "sainte",
+    "lague",
+    "laguë",
+    "formula"
+  ],
+  "author": "Rowan Crawford <wombleton@gmail.com>",
+  "license": "ISC"
+}
