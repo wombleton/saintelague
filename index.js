@@ -2,7 +2,7 @@ var _ = require('lodash');
 
 module.exports = function(parties, options) {
   options = options || {};
-  parties = _.clone(parties, true);
+  parties = _.cloneDeep(parties);
 
   var allocated = 0,
     party,
@@ -26,7 +26,7 @@ module.exports = function(parties, options) {
   });
 
   while (allocated < seats) {
-    party = _.max(parties, 'quotient');
+    party = _.maxBy(parties, 'quotient');
     party.allocated++;
     party.quotient = party.votes / ((2 * party.allocated) + 1);
     allocated++;
