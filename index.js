@@ -9,7 +9,7 @@ module.exports = function(parties, options) {
     seats = options.seats || 120,
     totalVotes;
 
-  totalVotes = _.reduce(_.pluck(parties, 'votes'), function(total, votes) {
+  totalVotes = _.reduce(_.map(parties, 'votes'), function(total, votes) {
     return total + votes;
   }, 0);
 
