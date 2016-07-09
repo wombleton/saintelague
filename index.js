@@ -2,14 +2,14 @@ var _ = require('lodash');
 
 module.exports = function(parties, options) {
   options = options || {};
-  parties = _.clone(parties, true);
+  parties = _.cloneDeep(parties);
 
   var allocated = 0,
     party,
     seats = options.seats || 120,
     totalVotes;
 
-  totalVotes = _.reduce(_.pluck(parties, 'votes'), function(total, votes) {
+  totalVotes = _.reduce(_.map(parties, 'votes'), function(total, votes) {
     return total + votes;
   }, 0);
 
@@ -26,7 +26,7 @@ module.exports = function(parties, options) {
   });
 
   while (allocated < seats) {
-    party = _.max(parties, 'quotient');
+    party = _.maxBy(parties, 'quotient');
     party.allocated++;
     party.quotient = party.votes / ((2 * party.allocated) + 1);
     allocated++;
