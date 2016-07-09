@@ -1,12 +1,15 @@
 var _ = require('lodash');
 
 module.exports = function(parties, options) {
-  options = options || {};
   parties = _.cloneDeep(parties);
+  options = _.defaults(options, {
+      seats: 120,
+      threshold: 0.05
+  });
 
   var allocated = 0,
     party,
-    seats = options.seats || 120,
+    seats = options.seats,
     totalVotes;
 
   totalVotes = _.reduce(_.map(parties, 'votes'), function(total, votes) {
@@ -15,7 +18,7 @@ module.exports = function(parties, options) {
 
   _.each(parties, function(party) {
     party.allocated = 0;
-    if (party.electorates > 0 || (party.votes / totalVotes) > 0.05) {
+    if (party.electorates > 0 || (party.votes / totalVotes) > options.threshold) {
       party.quotient = party.votes;
     }
 
