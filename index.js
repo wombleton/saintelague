@@ -5,7 +5,9 @@ module.exports = function saintLague(parties, options) {
   options = _.defaults(options, {
       seats: 120,
       threshold: 0.05,
-      overhang: true
+      overhang: true,
+      tagAlong: true,
+      tagAlongSeats: 1
   });
 
   var allocated = 0,
@@ -20,7 +22,7 @@ module.exports = function saintLague(parties, options) {
 
   _.each(parties, function(party) {
     party.allocated = 0;
-    if (party.electorates > 0 || (party.votes / totalVotes) >= options.threshold) {
+    if ((options.tagAlong && party.electorates >= options.tagAlongSeats) || (party.votes / totalVotes) >= options.threshold) {
       party.quotient = party.votes;
     }
 

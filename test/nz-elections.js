@@ -22,11 +22,7 @@ module.exports['2014 NZ election'] = function(test) {
     { votes: 677, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 61);
@@ -68,11 +64,7 @@ module.exports['2011 NZ election'] = function(test) {
     { votes: 1209, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 59);
@@ -118,11 +110,7 @@ module.exports['2008 NZ election'] = function(test) {
     { votes: 313, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 58);
@@ -174,11 +162,7 @@ module.exports['2005 NZ election'] = function(test) {
     { votes: 344, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 50);
@@ -225,11 +209,7 @@ module.exports['2002 NZ election'] = function(test) {
     { votes: 274, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 52);
@@ -279,11 +259,7 @@ module.exports['1999 NZ election'] = function(test) {
     { votes: 292, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 49);
@@ -340,11 +316,7 @@ module.exports['1996 NZ election'] = function(test) {
     { votes: 404, electorates: 0 }
   ];
 
-  result = lague(parties, {
-    seats: 120,
-    threshold: 0.05,
-    overhang: true
-  });
+  result = lague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 44);
