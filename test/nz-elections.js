@@ -1,41 +1,5 @@
 var lague = require('../index');
 
-module.exports['test lague calculations'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
-      { name: 'A', votes: 100, electorates: 1 },
-      { name: 'B', votes: 5, electorates: 10 },
-      { name: 'C', votes: 5, electorates: 0 },
-      { name: 'D', votes: 50, electorates: 1, listSize: 5 },
-      { name: 'E', votes: -1, electorates: 5 }
-    ];
-
-  result = lague(parties, { seats: 120 });
-
-  // doesn't pollute original array
-  test.equals(parties[0].allocated, undefined);
-
-  test.equals(result.length, 5);
-
-  // allocated
-  test.equals(result[0].allocated, 74);
-  test.equals(result[1].allocated, 10);
-  test.equals(result[2].allocated, 0);
-  test.equals(result[3].allocated, 37);
-  test.equals(result[4].allocated, 5);
-
-  // lists
-  test.equals(result[0].lists, 73);
-  test.equals(result[1].lists, 0);
-  test.equals(result[2].lists, 0);
-  test.equals(result[3].lists, 5);
-  test.equals(result[4].lists, 0);
-
-  test.done();
-};
-
 module.exports['2014 NZ election'] = function(test) {
   var parties,
     result;
@@ -58,7 +22,11 @@ module.exports['2014 NZ election'] = function(test) {
     { votes: 677, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 61);
@@ -100,7 +68,11 @@ module.exports['2011 NZ election'] = function(test) {
     { votes: 1209, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 59);
@@ -146,7 +118,11 @@ module.exports['2008 NZ election'] = function(test) {
     { votes: 313, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 58);
@@ -198,7 +174,11 @@ module.exports['2005 NZ election'] = function(test) {
     { votes: 344, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 50);
@@ -245,7 +225,11 @@ module.exports['2002 NZ election'] = function(test) {
     { votes: 274, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 52);
@@ -295,7 +279,11 @@ module.exports['1999 NZ election'] = function(test) {
     { votes: 292, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 49);
@@ -352,7 +340,11 @@ module.exports['1996 NZ election'] = function(test) {
     { votes: 404, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120, threshold: 0.05 });
+  result = lague(parties, {
+    seats: 120,
+    threshold: 0.05,
+    overhang: true
+  });
 
   // allocated
   test.equals(result[0].allocated, 44);
