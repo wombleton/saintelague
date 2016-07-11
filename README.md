@@ -1,9 +1,12 @@
 Sainte-Laguë
 ============
 
-A module to calculate proportionally how many seats a party will receive under the Sainte-Laguë formula. This currently assumes the New Zealand system where 5% or one electorate seat is required to be included.
+A module to calculate proportionally how many seats a party will receive under the Sainte-Laguë formula. The defaults are the New Zealand system where 5% or one electorate seat is required for proportionality.
 
-List size is optional, but if included an underhang will be applied as best it's able. This will be inaccurate where list and the electorates overlap.
+List size is optional, but if included an underhang will be applied as best it's able.
+
+Usage
+=====
 
 ```js
 var lague = require('saintelague'),
@@ -14,11 +17,16 @@ parties = [
   { name: 'A', votes: 100, electorates: 1 },
   { name: 'B', votes: 5, electorates: 10 },
   { name: 'C', votes: 5, electorates: 0 },
-  { name: 'D', votes: 50, electorates: 1, listSize: 5 },
-  { name: 'E', votes: -1, electorates: 5 }
+  { name: 'D', votes: 50, electorates: 1, listSize: 5 }
 ];
 
-result = lague(parties, { seats: 120 });
+result = lague(parties, { 
+  overhang: true, // whether an overhang is allowed
+  seats: 120,
+  threshold: 0.05, // percentage required for list seats
+  tagAlong: true, // whether you can get list seats from winning an electorate seat
+  tagAlongSeats: 1 // how many electorate seats are required for list seats
+});
 //  [
 // high votes, low electorates
 //    { name: 'A', votes: 100, electorates: 1, allocated: 77, lists: 76 },
