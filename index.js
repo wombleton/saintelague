@@ -1,71 +1,81 @@
-var _ = require('lodash');
+const omit = require('object.omit');
 
-module.exports = function saintLague(parties, options) {
-  parties = _.cloneDeep(parties);
-  options = _.defaults(options, {
-      seats: 120,
-      threshold: 0.05,
-      overhang: true,
-      tagAlong: true,
-      tagAlongSeats: 1
-  });
+/**
+ * 
+ * @param {*} parties 
+ * @param {*} options 
+ */
+function saintLague (parties, options) {
+  options = Object.assign({
+    seats: 120,
+    threshold: 0.05,
+    overhang: true,
+    tagAlong: true,
+    tagAlongSeats: 1
+  }, options);
 
-  var allocated = 0,
-    party,
-    quotients = options.quotients || options.seats,
-    seats,
-    totalVotes;
+  let allocated = 0;
+  let quotients = options.quotients || options.seats;
 
-  totalVotes = _.reduce(parties, function(total, party) {
-    return total + party.votes;
-  }, 0);
+  const totalVotes = parties.reduce((total, party) => total + party.votes, 0);
 
-  _.each(parties, function(party) {
+  parties = parties.map((row) => {
+    const party = Object.assign({}, row);
+
     party.allocated = 0;
-    if ((options.tagAlong && party.electorates >= options.tagAlongSeats) || (party.votes / totalVotes) >= options.threshold) {
+    party.quotient = 0;
+
+    if (
+      (options.tagAlong && party.electorates >= options.tagAlongSeats) ||
+      (party.votes / totalVotes) >= options.threshold
+    ) {
       party.quotient = party.votes;
     }
 
     // Allows a party to be excluded without messing up results.
     // Useful with early results.
     if (party.votes === -1) {
-      quotients -= party.electorates;
+      quotients = quotients - party.electorates;
       party.allocated = party.electorates;
     }
+
+    return party;
   });
 
   while (allocated < quotients) {
-    party = _.maxBy(parties, 'quotient');
-    party.allocated++;
+    let party = parties.reduce((a, b) => a.quotient > b.quotient ? a : b, { quotient: 0 });
+    party.allocated = party.allocated + 1;
     party.quotient = party.votes / ((2 * party.allocated) + 1);
-    allocated++;
+    allocated = allocated + 1;
   }
 
-  parties = _.map(parties, function(party) {
+  parties = parties.map((party) => {
     if (party.electorates > party.allocated) {
       party.lists = 0;
     } else {
       party.lists = party.allocated - party.electorates;
-      if (!_.isUndefined(party, 'listSize') && party.lists > party.listSize) {
+
+      if (party.listSize !== undefined && party.lists > party.listSize) {
         party.lists = party.listSize;
       }
     }
+
     if (party.electorates > party.allocated) {
       party.allocated = party.electorates;
     }
 
-    return _.omit(party, 'quotient');
+    return omit(party, 'quotient');
   });
 
-  seats = _.reduce(parties, function(total, party) {
-    return total + party.allocated;
-  }, 0);
+  const seats = parties.reduce((total, party) => total + party.allocated, 0);
 
   // If overhang isn't allowed and overhang is detected
   // recalculate with less quotients.
   if (!options.overhang && seats > options.seats) {
-    return saintLague(parties, _.assign({ quotients: ((2 * options.seats) - seats)  }, options));
+    return saintLague(parties, Object.assign({ quotients: ((2 * options.seats) - seats)  }, options));
   }
 
   return parties;
 };
+
+module.exports = saintLague;

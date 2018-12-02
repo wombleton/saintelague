@@ -1,10 +1,7 @@
-var lague = require('../index');
+const sainteLague = require('../index');
 
-module.exports['2014 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['2014 NZ election'] = (test) => {
+  const parties = [
     { votes: 1010464, electorates: 41 },
     { votes: 519146, electorates: 27 },
     { votes: 210764, electorates: 0 },
@@ -22,7 +19,7 @@ module.exports['2014 NZ election'] = function(test) {
     { votes: 677, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 61);
@@ -44,11 +41,8 @@ module.exports['2014 NZ election'] = function(test) {
   test.done();
 };
 
-module.exports['2011 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['2011 NZ election'] = (test) => {
+  const parties = [
     { votes: 1058636, electorates: 42 },
     { votes: 614937, electorates: 22 },
     { votes: 247372, electorates: 0 },
@@ -64,7 +58,7 @@ module.exports['2011 NZ election'] = function(test) {
     { votes: 1209, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 59);
@@ -84,11 +78,8 @@ module.exports['2011 NZ election'] = function(test) {
   test.done();
 };
 
-module.exports['2008 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['2008 NZ election'] = (test) => {
+  const parties = [
     { votes: 1053398, electorates: 41 },
     { votes: 796880, electorates: 21 },
     { votes: 157613, electorates: 0 },
@@ -110,7 +101,7 @@ module.exports['2008 NZ election'] = function(test) {
     { votes: 313, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 58);
@@ -136,11 +127,8 @@ module.exports['2008 NZ election'] = function(test) {
   test.done();
 };
 
-module.exports['2005 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['2005 NZ election'] = (test) => {
+  const parties = [
     { votes: 935319, electorates: 31 },
     { votes: 889813, electorates: 31 },
     { votes: 130115, electorates: 0 },
@@ -162,7 +150,7 @@ module.exports['2005 NZ election'] = function(test) {
     { votes: 344, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 50);
@@ -188,11 +176,8 @@ module.exports['2005 NZ election'] = function(test) {
   test.done();
 };
 
-module.exports['2002 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['2002 NZ election'] = (test) => {
+  const parties = [
     { votes: 838219, electorates: 45 },
     { votes: 425310, electorates: 21 },
     { votes: 210912, electorates: 1 },
@@ -209,7 +194,7 @@ module.exports['2002 NZ election'] = function(test) {
     { votes: 274, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 52);
@@ -230,11 +215,8 @@ module.exports['2002 NZ election'] = function(test) {
   test.done();
 };
 
-module.exports['1999 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['1999 NZ election'] = (test) => {
+  const parties = [
     { votes: 800199, electorates: 41 },
     { votes: 629932, electorates: 22 },
     { votes: 159859, electorates: 1 },
@@ -259,7 +241,7 @@ module.exports['1999 NZ election'] = function(test) {
     { votes: 292, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 49);
@@ -288,11 +270,8 @@ module.exports['1999 NZ election'] = function(test) {
   test.done();
 };
 
-module.exports['1996 NZ election'] = function(test) {
-  var parties,
-    result;
-
-  parties = [
+module.exports['1996 NZ election'] = (test) => {
+  const parties = [
     { votes: 701315, electorates: 30 },
     { votes: 584159, electorates: 26 },
     { votes: 276603, electorates: 6 },
@@ -316,7 +295,7 @@ module.exports['1996 NZ election'] = function(test) {
     { votes: 404, electorates: 0 }
   ];
 
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // allocated
   test.equals(result[0].allocated, 44);

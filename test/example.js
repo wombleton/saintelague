@@ -1,18 +1,15 @@
-var lague = require('../index');
+const sainteLague = require('../index');
 
-module.exports['test lague calculations'] = function(test) {
-  var parties,
-    result;
+module.exports['test sainte lague calculations'] = (test) => {
+  const parties = [
+    { name: 'A', votes: 100, electorates: 1 },
+    { name: 'B', votes: 5, electorates: 10 },
+    { name: 'C', votes: 5, electorates: 0 },
+    { name: 'D', votes: 50, electorates: 1, listSize: 5 },
+    { name: 'E', votes: -1, electorates: 5 }
+  ];
 
-  parties = [
-      { name: 'A', votes: 100, electorates: 1 },
-      { name: 'B', votes: 5, electorates: 10 },
-      { name: 'C', votes: 5, electorates: 0 },
-      { name: 'D', votes: 50, electorates: 1, listSize: 5 },
-      { name: 'E', votes: -1, electorates: 5 }
-    ];
-
-  result = lague(parties, { seats: 120 });
+  const result = sainteLague(parties, { seats: 120 });
 
   // doesn't pollute original array
   test.equals(parties[0].allocated, undefined);

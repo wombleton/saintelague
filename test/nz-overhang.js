@@ -1,17 +1,12 @@
-var _ = require('lodash');
-var lague = require('../index');
+const sainteLague = require('../index');
 
 // All figures are as provided by the 2012 MMP Review Report
 // http://www.elections.org.nz/sites/default/files/bulk-upload/documents/Final_Report_2012_Review_of_MMP.pdf
 
 // 1.61 - Table 4 (Page 21)
 
-module.exports['2011 NZ election - 5% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2011 NZ election - 5% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 1058636, electorates: 42 },
     { votes: 614937, electorates: 22 },
     { votes: 247372, electorates: 0 },
@@ -27,16 +22,14 @@ module.exports['2011 NZ election - 5% threshold, with overhangs'] = function(tes
     { votes: 1209, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.05,
     overhang: true,
     tagAlong: true
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   // allocated
   test.equals(result[7].allocated, 1);
@@ -53,12 +46,8 @@ module.exports['2011 NZ election - 5% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['2011 NZ election - 4% threshold, without overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2011 NZ election - 4% threshold, without overhangs'] = (test) => {
+  const parties = [
     { votes: 1058636, electorates: 42 },
     { votes: 614937, electorates: 22 },
     { votes: 247372, electorates: 0 },
@@ -74,16 +63,14 @@ module.exports['2011 NZ election - 4% threshold, without overhangs'] = function(
     { votes: 1209, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: false,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   // allocated
   test.equals(result[7].allocated, 1);
@@ -100,12 +87,8 @@ module.exports['2011 NZ election - 4% threshold, without overhangs'] = function(
   test.done();
 };
 
-module.exports['2011 NZ election - 4% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2011 NZ election - 4% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 1058636, electorates: 42 },
     { votes: 614937, electorates: 22 },
     { votes: 247372, electorates: 0 },
@@ -121,16 +104,14 @@ module.exports['2011 NZ election - 4% threshold, with overhangs'] = function(tes
     { votes: 1209, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: true,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   // allocated
   test.equals(result[7].allocated, 1);
@@ -149,12 +130,8 @@ module.exports['2011 NZ election - 4% threshold, with overhangs'] = function(tes
 
 // 1.69 - Table 6 (Page 23)
 
-module.exports['2008 NZ election - 5% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2008 NZ election - 5% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 1053398, electorates: 41 },
     { votes: 796880, electorates: 21 },
     { votes: 157613, electorates: 0 },
@@ -176,16 +153,14 @@ module.exports['2008 NZ election - 5% threshold, with overhangs'] = function(tes
     { votes: 313, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.05,
     overhang: true,
     tagAlong: true
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[4].allocated + result[5].allocated + result[7].allocated, 69);
   test.equals(total, 122);
@@ -193,12 +168,8 @@ module.exports['2008 NZ election - 5% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['2008 NZ election - 4% threshold, without overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2008 NZ election - 4% threshold, without overhangs'] = (test) => {
+  const parties = [
     { votes: 1053398, electorates: 41 },
     { votes: 796880, electorates: 21 },
     { votes: 157613, electorates: 0 },
@@ -220,16 +191,14 @@ module.exports['2008 NZ election - 4% threshold, without overhangs'] = function(
     { votes: 313, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: false,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[4].allocated + result[5].allocated + result[7].allocated, 63);
   test.equals(total, 120);
@@ -237,12 +206,8 @@ module.exports['2008 NZ election - 4% threshold, without overhangs'] = function(
   test.done();
 };
 
-module.exports['2008 NZ election - 4% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2008 NZ election - 4% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 1053398, electorates: 41 },
     { votes: 796880, electorates: 21 },
     { votes: 157613, electorates: 0 },
@@ -264,16 +229,14 @@ module.exports['2008 NZ election - 4% threshold, with overhangs'] = function(tes
     { votes: 313, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: true,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[4].allocated + result[5].allocated + result[7].allocated, 67);
   test.equals(total, 128);
@@ -281,12 +244,8 @@ module.exports['2008 NZ election - 4% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['2005 NZ election - 5% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2005 NZ election - 5% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 935319, electorates: 31 },
     { votes: 889813, electorates: 31 },
     { votes: 130115, electorates: 0 },
@@ -308,16 +267,14 @@ module.exports['2005 NZ election - 5% threshold, with overhangs'] = function(tes
     { votes: 344, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.05,
     overhang: true,
     tagAlong: true
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[7].allocated + result[2].allocated + result[5].allocated, 61);
   test.equals(total, 121);
@@ -325,12 +282,8 @@ module.exports['2005 NZ election - 5% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['2005 NZ election - 4% threshold, without overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2005 NZ election - 4% threshold, without overhangs'] = (test) => {
+  const parties = [
     { votes: 935319, electorates: 31 },
     { votes: 889813, electorates: 31 },
     { votes: 130115, electorates: 0 },
@@ -352,16 +305,14 @@ module.exports['2005 NZ election - 4% threshold, without overhangs'] = function(
     { votes: 344, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: false,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[7].allocated + result[2].allocated + result[5].allocated, 60);
   test.equals(total, 120);
@@ -369,12 +320,8 @@ module.exports['2005 NZ election - 4% threshold, without overhangs'] = function(
   test.done();
 };
 
-module.exports['2005 NZ election - 4% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2005 NZ election - 4% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 935319, electorates: 31 },
     { votes: 889813, electorates: 31 },
     { votes: 130115, electorates: 0 },
@@ -396,16 +343,14 @@ module.exports['2005 NZ election - 4% threshold, with overhangs'] = function(tes
     { votes: 344, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: true,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[7].allocated + result[2].allocated + result[5].allocated, 64);
   test.equals(total, 127);
@@ -413,12 +358,8 @@ module.exports['2005 NZ election - 4% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['2002 NZ election - 5% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2002 NZ election - 5% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 838219, electorates: 45 },
     { votes: 425310, electorates: 21 },
     { votes: 210912, electorates: 1 },
@@ -435,16 +376,14 @@ module.exports['2002 NZ election - 5% threshold, with overhangs'] = function(tes
     { votes: 274, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.05,
     overhang: true,
     tagAlong: true
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[6].allocated + result[5].allocated, 62);
   test.equals(total, 120);
@@ -452,12 +391,8 @@ module.exports['2002 NZ election - 5% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['2002 NZ election - 4% threshold, without overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2002 NZ election - 4% threshold, without overhangs'] = (test) => {
+  const parties = [
     { votes: 838219, electorates: 45 },
     { votes: 425310, electorates: 21 },
     { votes: 210912, electorates: 1 },
@@ -474,16 +409,14 @@ module.exports['2002 NZ election - 4% threshold, without overhangs'] = function(
     { votes: 274, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: false,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[6].allocated + result[5].allocated, 62);
   test.equals(total, 120);
@@ -491,12 +424,8 @@ module.exports['2002 NZ election - 4% threshold, without overhangs'] = function(
   test.done();
 };
 
-module.exports['2002 NZ election - 4% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['2002 NZ election - 4% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 838219, electorates: 45 },
     { votes: 425310, electorates: 21 },
     { votes: 210912, electorates: 1 },
@@ -513,16 +442,14 @@ module.exports['2002 NZ election - 4% threshold, with overhangs'] = function(tes
     { votes: 274, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: true,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[6].allocated + result[5].allocated, 63);
   test.equals(total, 121);
@@ -530,12 +457,8 @@ module.exports['2002 NZ election - 4% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['1999 NZ election - 5% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['1999 NZ election - 5% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 800199, electorates: 41 },
     { votes: 629932, electorates: 22 },
     { votes: 159859, electorates: 1 },
@@ -560,16 +483,14 @@ module.exports['1999 NZ election - 5% threshold, with overhangs'] = function(tes
     { votes: 292, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.05,
     overhang: true,
     tagAlong: true
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[2].allocated, 59);
   test.equals(total, 120);
@@ -577,12 +498,8 @@ module.exports['1999 NZ election - 5% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['1999 NZ election - 4% threshold, without overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['1999 NZ election - 4% threshold, without overhangs'] = (test) => {
+  const parties = [
     { votes: 800199, electorates: 41 },
     { votes: 629932, electorates: 22 },
     { votes: 159859, electorates: 1 },
@@ -607,16 +524,14 @@ module.exports['1999 NZ election - 4% threshold, without overhangs'] = function(
     { votes: 292, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: false,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[2].allocated, 59);
   test.equals(total, 120);
@@ -624,12 +539,8 @@ module.exports['1999 NZ election - 4% threshold, without overhangs'] = function(
   test.done();
 };
 
-module.exports['1999 NZ election - 4% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['1999 NZ election - 4% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 800199, electorates: 41 },
     { votes: 629932, electorates: 22 },
     { votes: 159859, electorates: 1 },
@@ -654,16 +565,14 @@ module.exports['1999 NZ election - 4% threshold, with overhangs'] = function(tes
     { votes: 292, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: true,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[2].allocated, 60);
   test.equals(total, 121);
@@ -671,12 +580,8 @@ module.exports['1999 NZ election - 4% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['1996 NZ election - 5% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['1996 NZ election - 5% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 701315, electorates: 30 },
     { votes: 584159, electorates: 26 },
     { votes: 276603, electorates: 6 },
@@ -700,16 +605,14 @@ module.exports['1996 NZ election - 5% threshold, with overhangs'] = function(tes
     { votes: 404, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.05,
     overhang: true,
     tagAlong: true
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[2].allocated, 61);
   test.equals(total, 120);
@@ -717,12 +620,8 @@ module.exports['1996 NZ election - 5% threshold, with overhangs'] = function(tes
   test.done();
 };
 
-module.exports['1996 NZ election - 4% threshold, without overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['1996 NZ election - 4% threshold, without overhangs'] = (test) => {
+  const parties = [
     { votes: 701315, electorates: 30 },
     { votes: 584159, electorates: 26 },
     { votes: 276603, electorates: 6 },
@@ -746,16 +645,14 @@ module.exports['1996 NZ election - 4% threshold, without overhangs'] = function(
     { votes: 404, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: false,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[2].allocated, 59);
   test.equals(total, 120);
@@ -763,12 +660,8 @@ module.exports['1996 NZ election - 4% threshold, without overhangs'] = function(
   test.done();
 };
 
-module.exports['1996 NZ election - 4% threshold, with overhangs'] = function(test) {
-  var parties,
-    result,
-    total;
-
-  parties = [
+module.exports['1996 NZ election - 4% threshold, with overhangs'] = (test) => {
+  const parties = [
     { votes: 701315, electorates: 30 },
     { votes: 584159, electorates: 26 },
     { votes: 276603, electorates: 6 },
@@ -792,16 +685,14 @@ module.exports['1996 NZ election - 4% threshold, with overhangs'] = function(tes
     { votes: 404, electorates: 0 }
   ];
 
-  result = lague(parties, {
+  const result = sainteLague(parties, {
     seats: 120,
     threshold: 0.04,
     overhang: true,
     tagAlong: false
   });
 
-  total = _.reduce(result, function(total, party) {
-      return total + party.allocated;
-  }, 0);
+  total = result.reduce((total, party) => total + party.allocated, 0);
 
   test.equals(result[0].allocated + result[2].allocated, 59);
   test.equals(total, 121);
